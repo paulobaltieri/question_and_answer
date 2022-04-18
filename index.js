@@ -10,7 +10,22 @@ app.get('/', (req, res) => [
 app.get('/home', (req, res) => {
     let nome = "Paulo"
     let sobrenome = "Baltieri"
-    res.render("principal/home", { nome, sobrenome })
+    let exibirMsg = "true"
+    res.render("principal/home", {
+        nome,
+        sobrenome,
+        exibirMsg
+    })
+})
+app.get('/raca/:nome?', (req, res) => {
+    let raca = req.params.nome
+    let porte = "Pequeno"
+    let origem = "Brasil"
+    res.render("principal/raca", {
+        raca,
+        porte,
+        origem
+    })
 })
 
 app.listen(8080, () => {
