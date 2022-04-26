@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const connection = require('./database/database')
-const question = require('./database/Question')
+const Question = require('./database/Question')
 
 connection
     .authenticate()
@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
+    Question.findAll().then(questions => {
+        console.log(questions)
+    })
     res.render('index')
 })
 app.get('/question', (req, res) => {
@@ -28,7 +31,12 @@ app.get('/question', (req, res) => {
 app.post('/saveQuestion', (req, res) => {
     let title = req.body.title
     let descrition = req.body.descrition
-    res.send(`Título: ${title}  Descrição: ${descrition}`)
+    Question.create({
+        title: title,
+        descrition: descrition
+    }).then(() => {
+        res.redirect('/')
+    })
 })
 app.listen(8080, () => {
     console.log('App funcionando 🚀 ')

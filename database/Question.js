@@ -1,17 +1,19 @@
 const sequelize = require('sequelize')
 const connection = require('./database')
 
-const question = connection.define('questions', {
-    titulo: {
+const Question = connection.define('questions', {
+    title: {
         type: sequelize.STRING,
         alloqNull: false
     },
-    description: {
+    descrition: {
         type: sequelize.STRING,
         alloqNull: false
     }
 })
 
-question.sync({ force: false }).then(() => {
+Question.sync({ force: false }).then(() => {
     console.log('Tabela Criada!')
 })
+
+module.exports = Question
