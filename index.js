@@ -20,10 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    Question.findAll().then(questions => {
-        console.log(questions)
+    Question.findAll({ raw: true }).then(questions => {
+        res.render('index', {
+            questions: questions
+        })
     })
-    res.render('index')
+
 })
 app.get('/question', (req, res) => {
     res.render('question')
@@ -35,6 +37,7 @@ app.post('/saveQuestion', (req, res) => {
         title: title,
         descrition: descrition
     }).then(() => {
+        res.render('Olá mundo')
         res.redirect('/')
     })
 })
