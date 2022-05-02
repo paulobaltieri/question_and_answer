@@ -20,7 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    Question.findAll({ raw: true }).then(questions => {
+    Question.findAll({
+        raw: true, order: [
+            ['id', 'DESC']
+        ]
+    }).then(questions => {
         res.render('index', {
             questions: questions
         })
@@ -40,6 +44,21 @@ app.post('/saveQuestion', (req, res) => {
         res.render('Olá mundo')
         res.redirect('/')
     })
+})
+app.get('/questionPage/:id', (req, res) => {
+    let id = req.params.id
+    Question.findOne({
+        where: { id: id }
+    }).then(question => {
+        if (question != undefined) {
+            res.render('questionPage')
+        } else {
+            res.redirect('/error404')
+        }
+    })
+})
+app.get('/error404', (req, res) => {
+    res.render('alertas/error404')
 })
 app.listen(8080, () => {
     console.log('App funcionando 🚀 ')
