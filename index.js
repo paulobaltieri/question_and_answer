@@ -41,17 +41,18 @@ app.post('/saveQuestion', (req, res) => {
         title: title,
         descrition: descrition
     }).then(() => {
-        res.render('Olá mundo')
-        res.redirect('/')
+        res.render('alertas/alert')
     })
 })
 app.get('/questionPage/:id', (req, res) => {
     let id = req.params.id
     Question.findOne({
         where: { id: id }
-    }).then(question => {
-        if (question != undefined) {
-            res.render('questionPage')
+    }).then(questionPage => {
+        if (questionPage != undefined) {
+            res.render('questionPage', {
+                questionPage: questionPage
+            })
         } else {
             res.redirect('/error404')
         }

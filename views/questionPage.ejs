@@ -1,1 +1,25 @@
-<p>Página de perguntas</p>
+<!-- Serve para reaproveitar partes do código-->
+<%- include ('partials/header.ejs'); %>
+
+    <body>
+        <%- include('partials/navbar.ejs') %>
+            <div class="container">
+                <div class="card" id="fomulario-question">
+                    <div class="card-header">
+                        <h3>
+                            <%= questionPage.title %>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <%= questionPage.descrition %>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+    </body>
+    <%- include ('partials/footer.ejs') %>

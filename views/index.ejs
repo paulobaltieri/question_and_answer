@@ -9,17 +9,16 @@
                 <a href="/question" class="btn btn-primary"> Faça uma pergunta</a>
                 <hr>
                 <br>
-                <% questions.forEach(questions=> {%>
+                <% questions.forEach(questionPage=> {%>
                     <br>
                     <div class="card">
                         <div class="card-body">
                             <h3>
-                                <%= questions.title %>
+                                <%= questionPage.title %>
                             </h3>
                         </div>
                         <div class="card-footer">
-                            <a href="./question.ejs/5">
-                                <button class="btn btn-primary">Responder</button>
+                            <a href="/questionPage/<%= questionPage.id %>"><button class="btn btn-primary">Responder</button></a>
                             </a>
                         </div>
                     </div>
