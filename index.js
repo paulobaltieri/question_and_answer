@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const connection = require('./database/database')
-const Question = require('./database/Question')
+const Pergunta = require('./database/Pergunta')
 
 connection
     .authenticate()
@@ -20,13 +20,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    Question.findAll({
+    Pergunta.findAll({
         raw: true, order: [
             ['id', 'DESC']
         ]
-    }).then(questions => {
+    }).then(perguntas => {
         res.render('index', {
-            questions: questions
+            perguntas: perguntas
         })
     })
 
@@ -37,7 +37,7 @@ app.get('/question', (req, res) => {
 app.post('/saveQuestion', (req, res) => {
     let title = req.body.title
     let descrition = req.body.descrition
-    Question.create({
+    Pergunta.create({
         title: title,
         descrition: descrition
     }).then(() => {
@@ -46,7 +46,7 @@ app.post('/saveQuestion', (req, res) => {
 })
 app.get('/questionPage/:id', (req, res) => {
     let id = req.params.id
-    Question.findOne({
+    Pergunta.findOne({
         where: { id: id }
     }).then(questionPage => {
         if (questionPage != undefined) {
