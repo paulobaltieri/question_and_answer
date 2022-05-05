@@ -4,22 +4,16 @@
     <body>
         <%- include('partials/navbar.ejs') %>
             <div class="container">
-                <div class="card" id="fomulario-question">
-                    <div class="card-header">
-                        <h3>
-                            <%= questionPage.title %>
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <%= questionPage.descrition %>
-                    </div>
-                </div>
+                <hr>
+                <h1>
+                    <%= questionPage.title %>
+                </h1>
+             <br>
+                <form>
+                    <h4>Responda</h4>
+                    <textarea placeholder="Digite sua resposta" class="form-control" name="corpo"></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar resposta</button>
+                </form>
             </div>
-
-
-
-
-
-
     </body>
     <%- include ('partials/footer.ejs') %>

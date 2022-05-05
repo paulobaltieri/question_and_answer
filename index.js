@@ -32,8 +32,13 @@ app.get('/', (req, res) => {
     })
 
 })
-app.get('/question', (req, res) => {
-    res.render('question')
+app.get('/pergunta', (req, res) => {
+
+    if (Pergunta == '') {
+        res.redirect('/error404')
+    } else {
+        res.render('pergunta')
+    }
 })
 app.post('/saveQuestion', (req, res) => {
     let title = req.body.title
