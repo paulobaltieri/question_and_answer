@@ -67,6 +67,18 @@ app.get('/questionPage/:id', (req, res) => {
 app.get('/error404', (req, res) => {
     res.render('alertas/error404')
 })
+app.post('/resposta', (req, res) => {
+    let corpo = req.body.corpo
+    let perguntaId = req.body.questionPage
+    
+    Resposta.create({
+        corpo: corpo,
+        perguntaId: perguntaId,
+
+    }).then(() => {
+        res.redirect('/questionPage/' + perguntaId)
+    })
+})
 app.listen(8080, () => {
     console.log('App funcionando 🚀 ')
 })
