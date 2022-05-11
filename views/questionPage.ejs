@@ -19,14 +19,18 @@
                     <input type="hidden" name="questionPage" value="<%= questionPage.id %>">
                     <button type="submit" class="btn btn-primary">Enviar resposta</button>
                 </form>
+                <hr>
+                <h3>Respostas</h3>
+                <hr>
+                <% respostas.forEach(resposta =>{%>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <%= resposta.corpo%><br>
+                        </div>
+                    </div>
+                <%}) %> 
             </div>
     </body>
-    <script>
-        Swal.fire({
-            title: 'Error!',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText: 'Cool'
-        })
-    </script>
+
     <%- include ('partials/footer.ejs') %>

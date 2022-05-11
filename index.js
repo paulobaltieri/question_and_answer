@@ -56,8 +56,14 @@ app.get('/questionPage/:id', (req, res) => {
         where: { id: id }
     }).then(questionPage => {
         if (questionPage != undefined) {
-            res.render('questionPage', {
-                questionPage: questionPage
+            Resposta.findAll({
+                where: { perguntaId: questionPage.id },
+                order: [['id', 'DESC']]
+            }).then(respostas => {
+                res.render('questionPage', {
+                    questionPage: questionPage,
+                    respostas: respostas
+                })
             })
         } else {
             res.redirect('/error404')
@@ -70,7 +76,7 @@ app.get('/error404', (req, res) => {
 app.post('/resposta', (req, res) => {
     let corpo = req.body.corpo
     let perguntaId = req.body.questionPage
-    
+
     Resposta.create({
         corpo: corpo,
         perguntaId: perguntaId,
