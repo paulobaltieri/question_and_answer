@@ -45,9 +45,9 @@ app.post('/saveQuestion', (req, res) => {
     let descrition = req.body.descrition
     Pergunta.create({
         title: title,
-        descrition: descrition
+   /*   descrition: descrition */
     }).then(() => {
-        res.render('alertas/alert')
+        res.redirect('/')
     })
 })
 app.get('/questionPage/:id', (req, res) => {
